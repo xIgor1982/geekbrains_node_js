@@ -1,0 +1,27 @@
+{
+  "name": "geekbrains_node_js",
+  "version": "1.0.0",
+  "description": "geekbrains_node_js",
+  "main": "helloworld.js",
+  "scripts": {
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xIgor1982/geekbrains_node_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xIgor1982/geekbrains_node_js/issues"
+  },
+  "homepage": "https://github.com/xIgor1982/geekbrains_node_js#readme",
+  "dependencies": {
+    "colored-console-log": "^1.0.3",
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.0"
+  }
+}
