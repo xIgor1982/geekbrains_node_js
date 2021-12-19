@@ -1,0 +1,25 @@
+{
+  "name": "geekbrains_node_js",
+  "version": "1.0.0",
+  "description": "geekbrains_node_js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xIgor1982/geekbrains_node_js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xIgor1982/geekbrains_node_js/issues"
+  },
+  "homepage": "https://github.com/xIgor1982/geekbrains_node_js#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "yargs": "^17.3.0"
+  }
+}
