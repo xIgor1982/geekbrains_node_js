@@ -1,6 +1,9 @@
 //разбор методички
 
-const fs = require('fs')
+// const fs = require('fs')
+//
+// const log1 = '127.0.0.1 - - [30/Jan/2021:11:11:20 -0300] "POST /foo HTTP/1.1" 200 0 "-" "curl/7.47.0"';
+// const log2 = '127.0.0.1 - - [30/Jan/2021:11:11:25 -0300] "GET /boo HTTP/1.1" 404 0 "-" "curl/7.47.0"';
 
 //*************** Чтение файла ***************
 
@@ -15,10 +18,6 @@ const fs = require('fs')
 // console.log(data);
 
 //*************** Запись файла ***************
-
-// const log1 = '127.0.0.1 - - [30/Jan/2021:11:11:20 -0300] "POST /foo HTTP/1.1" 200 0 "-" "curl/7.47.0"';
-// const log2 = '127.0.0.1 - - [30/Jan/2021:11:11:25 -0300] "GET /boo HTTP/1.1" 404 0 "-" "curl/7.47.0"';
-
 //->Асинхронная запись файла
 // Файл перезаписывается
 // fs.writeFile('./access.log', log1, (err) => {
@@ -46,3 +45,29 @@ const fs = require('fs')
 // })
 // readStream.on('end', () => console.log('Чтение файла завершено!'))
 // readStream.on('error', () => console.log(err))
+
+//*************** Поток на запись ***************
+// const writeStream = fe.createWriteStream('./access.log', 'utf-8')
+//Перезаписать полностью флаг
+// writeStream.write(log1)
+
+//Что бы дописать файл применяем флаг.
+// const writeStream = fs.createWriteStream('./access.log', {flags: 'a', encoding: 'utf-8'})
+// writeStream.write(`\n${log1}`)
+
+//*************** Поток на чтение и запись ***************
+const fs = require('fs')
+const readStream = new fs.ReadStream('./access.log', 'utf-8')
+
+const {Transform} = require('stream')
+
+const transformStream = new Transform({
+    transform(chunk, encoding, callback) {
+        const transformedChunk = chunk.toString().replace(/127.0.0.1/g, '************')
+        this.push(transformedChunk)
+
+        callback()
+    }
+})
+
+readStream.pipe(transformStream).pipe(process.stdout)
